@@ -1,0 +1,25 @@
+﻿<Window x:Class="RibbonMvvmPoC.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RibbonMvvmPoC"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525"
+        DataContext="{Binding Main, Source={StaticResource Locator}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Ribbon x:Name="RibbonWin"  SelectedIndex="0" Grid.Row="0">
+            <RibbonTab Header="Home">
+                <RibbonButton Label="Old way" Click="RibbonButton_Click"></RibbonButton>
+                <RibbonButton Label="New way" Command="{Binding DoSomethingCommand}"></RibbonButton>
+                <RibbonButton Label="Increment counter" Command="{Binding IncrementCounterCommand}"></RibbonButton>
+            </RibbonTab>
+        </Ribbon>
+        <Label Content="{Binding ClickCounter}" Grid.Row="1" Height="24px"></Label>
+    </Grid>
+</Window>
