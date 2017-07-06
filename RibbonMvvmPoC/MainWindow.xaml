@@ -57,8 +57,11 @@
                 <GridSplitter Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Height="2" Width="Auto" HorizontalAlignment="Stretch" Background="Aqua"></GridSplitter>
                 <Border Background="White" BorderBrush="Black" BorderThickness="1" Grid.Row="0" Grid.Column="0">
 
-                    <Canvas Name="LabelCanvas" >
-                        <Polygon Points="10,10 180,50, 10,90" Stroke="Black" Fill="Red" />
+                    <Canvas Name="LabelCanvas" ClipToBounds="True">
+                        <Polygon Points="10,10 180,50 10,90" Stroke="Black" Fill="Red" />
+                        <Label Content="asdasd" Padding="0" Canvas.Left="203" Canvas.Top="29" BorderBrush="PaleVioletRed" BorderThickness="1"/>
+                        <TextBlock Padding="0" Canvas.Left="203" Canvas.Top="63"><Run Text="bcvbvcbb"/></TextBlock>
+                        <TextBox Padding="0" Canvas.Left="109" Canvas.Top="61" BorderBrush="LightGreen" BorderThickness="1" Text="ungbasd"/>
                     </Canvas>
                 </Border>
             </Grid>
