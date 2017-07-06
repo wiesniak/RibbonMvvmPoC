@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RibbonMvvmPoC"
+        xmlns:ruler="clr-namespace:WpfRuler"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
@@ -18,8 +19,49 @@
                 <RibbonButton Label="Old way" Click="RibbonButton_Click"></RibbonButton>
                 <RibbonButton Label="New way" Command="{Binding DoSomethingCommand}"></RibbonButton>
                 <RibbonButton Label="Increment counter" Command="{Binding IncrementCounterCommand}"></RibbonButton>
+                <RibbonButton Label="Print" Command="{Binding PrintCommand}"></RibbonButton>
             </RibbonTab>
         </Ribbon>
         <Label Content="{Binding ClickCounter}" Grid.Row="1" Height="24px"></Label>
+
+        <Grid Grid.Row="2" Name="WorkingAreaGrid">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ruler:PixelRuler AutoSize="True" Grid.Row="0" Grid.Column="1" Step="10" Zoom="10" SmallStep="1">
+            </ruler:PixelRuler>
+            <ruler:PixelRuler AutoSize="True" Grid.Row="1" Grid.Column="0" Step="10" Zoom="10" SmallStep="1">
+                <ruler:PixelRuler.LayoutTransform>
+                    <RotateTransform Angle="90" />
+                </ruler:PixelRuler.LayoutTransform>
+            </ruler:PixelRuler>
+            <Grid Grid.Row="1" Grid.Column="1" Background="LightGray">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*" ></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <GridSplitter Grid.Row="0" Grid.Column="1" Height="Auto" Width="2" VerticalAlignment="Stretch" Background="Aqua" ResizeBehavior="PreviousAndNext" ResizeDirection="Columns"></GridSplitter>
+                <GridSplitter Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Height="2" Width="Auto" HorizontalAlignment="Stretch" Background="Aqua"></GridSplitter>
+                <Border Background="White" BorderBrush="Black" BorderThickness="1" Grid.Row="0" Grid.Column="0">
+
+                    <Canvas Name="LabelCanvas" >
+                        <Polygon Points="10,10 180,50, 10,90" Stroke="Black" Fill="Red" />
+                    </Canvas>
+                </Border>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

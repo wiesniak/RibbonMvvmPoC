@@ -26,6 +26,21 @@ namespace RibbonMvvmPoC
         {
             InitializeComponent();
             Messenger.Default.Register<string>(this, ShowWindow);
+            Messenger.Default.Register<string>(this, "PrintCanvas", (x) => PrintCanvas());
+        }
+
+        private void PrintCanvas()
+        {
+            PrintDialog prnt = new PrintDialog();
+            if (prnt.ShowDialog() == true)
+            {
+                var controlToPrint = WorkingAreaGrid; // LabelCanvas
+                Size pageSize = new Size(prnt.PrintableAreaWidth, prnt.PrintableAreaHeight);
+                controlToPrint.Measure(pageSize);
+                controlToPrint.Arrange(new Rect(5, 5, pageSize.Width, pageSize.Height));
+
+                prnt.PrintVisual(controlToPrint, "Printing Canvas");
+            }
         }
 
         private void ShowWindow(string message)

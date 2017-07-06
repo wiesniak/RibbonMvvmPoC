@@ -26,12 +26,19 @@ namespace RibbonMvvmPoC.ViewModel
         {
             DoSomethingCommand = new RelayCommand(DoSomething, () => true);
             IncrementCounterCommand = new RelayCommand(IncrementCounter, () => true);
+            PrintCommand = new RelayCommand(PrintCanvas, () => true);
             ClickCounter = 0;
+        }
+
+        private void PrintCanvas()
+        {
+            MessengerInstance.Send(string.Empty, "PrintCanvas");
         }
 
 
         public RelayCommand DoSomethingCommand { get; private set; }
         public RelayCommand IncrementCounterCommand { get; private set; }
+        public RelayCommand PrintCommand { get; private set; }
 
         public int ClickCounter
         {
